@@ -1,0 +1,43 @@
+# ! é obrigatorio
+
+type Category {
+  id: ID!
+  name: String!
+  description: String
+  courses: [Course!]!
+}
+
+type Course {
+  id: ID!
+  name: String!
+  description: String
+  category: Category!
+}
+
+#para colocar os dados
+
+input NewCategory {
+  name: String!
+  description: String
+}
+
+input NewCourse {
+  name: String!
+  description: String
+  categoryID: ID!
+}
+
+#GraphQL -> permite que façamos consultas
+
+type Query {
+  categories: [Category!]!
+  courses: [Course!]!
+}
+
+#GraphQL -> tem mutation, alteração nos registros dos modelo.
+#Funcao(recebe): retorna
+
+type Mutation {
+  createCategory(input: NewCategory!): Category!
+  createCourse(input: NewCourse!): Course!
+}
